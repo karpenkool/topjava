@@ -50,7 +50,7 @@ public class MealServlet extends HttpServlet {
         if (action == null) {
             log.info("getAll");
             request.setAttribute("meals",
-                    MealsUtil.getFilteredWithExceeded(MealsUtil.MEALS, LocalTime.MIN, LocalTime.MAX, 2000));
+                    MealsUtil.getFilteredWithExceeded(repository.getAll(), LocalTime.MIN, LocalTime.MAX, 2000));
             request.getRequestDispatcher("/meals.jsp").forward(request, response);
         } else if (action.equals("delete")) {
             int id = getId(request);
