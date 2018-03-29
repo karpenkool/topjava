@@ -9,7 +9,6 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -32,18 +31,15 @@ public class JpaMealRepositoryImpl implements MealRepository {
         } else {
             return em.merge(meal);
         }
-
-
     }
 
     @Override
     @Transactional
     public boolean delete(int id, int userId) {
-
         return em.createNamedQuery(Meal.DELETE)
                 .setParameter("id", id)
                 .setParameter("userId", userId)
-                .executeUpdate() !=0;
+                .executeUpdate() != 0;
     }
 
     @Override
@@ -64,6 +60,6 @@ public class JpaMealRepositoryImpl implements MealRepository {
         return em.createNamedQuery(Meal.GET_BETWEEN, Meal.class)
                 .setParameter("userId", userId)
                 .setParameter("startDate", startDate)
-                .setParameter("endDate", endDate). getResultList();
+                .setParameter("endDate", endDate).getResultList();
     }
 }
